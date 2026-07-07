@@ -20,3 +20,10 @@ pipeline_info/*.{html,json,txt,yml}
 **/*_pathabundance.tsv.gz
 **/*_reactions.tsv.gz
 **/*bowtie2out.txt
+**/*_mapping_data.json
+**/*_mapping_data.txt
+**/*.seqs.temp.txt
+**/*.allele_mapping_data.json
+**/*.allele_mapping_data.txt
+**/*.gene_mapping_data.json
+**/*.gene_mapping_data.txt

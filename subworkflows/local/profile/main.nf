@@ -13,6 +13,7 @@ include { METAPHLAN_METAPHLAN as MPAHUMANN3;
 include { CONCAT_ALL                                    } from '../../../subworkflows/local/concatall'
 include { DIAMOND_BLASTX                                } from '../../../modules/nf-core/diamond/blastx/main'
 include { RGI_BWT                                       } from '../../../modules/nf-core/rgi/bwt/main'
+include { RGI_CARDANNOTATION                            } from '../../../modules/nf-core/rgi/cardannotation/main'
 include { EGGNOGMAPPER                                  } from '../../../modules/nf-core/eggnogmapper/main'
 include { SEQKIT_FQ2FA                                  } from '../../../modules/nf-core/seqkit/fq2fa/main'
 include { GUNZIP                                        } from '../../../modules/nf-core/gunzip/main'
@@ -239,7 +240,8 @@ workflow PROFILING {
     }
 
     if ( params.run_rgi ) {
-        RGI_BWT( ch_input_for_rgi.reads, getDbPath(ch_input_for_rgi.db, "main"), [] )
+        RGI_CARDANNOTATION(getDbPath(ch_input_for_rgi.db, "main"))
+        RGI_BWT( ch_input_for_rgi.reads, RGI_CARDANNOTATION.out.db, [] )
         ch_raw_profiles = ch_raw_profiles.mix( RGI_BWT.out.tsv )
     }
     if ( params.run_eggnogmapper ) {
