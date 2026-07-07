@@ -26,34 +26,26 @@
                 "shortname_antibiotics.tsv:md5,9a4ba742fd8a3a49c7f50744001a4129",
                 "shortname_pathogens.tsv:md5,5211712be4f4c3306cbe4052cafae1d7",
                 "snps.txt:md5,529d4fdb74c8940c0930ec1a7a6d4980",
-                "2612.allele_mapping_data.json:md5,d012bf1d1676e73af1abbd2f4d7b80b3",
-                "2612.allele_mapping_data.txt:md5,63b403927ff722b58da55911b078c362",
                 "2612.artifacts_mapping_stats.txt:md5,cd567be74e90c8a9f482355a7e5b9a3b",
                 "2612.coverage.temp.txt:md5,bcf0dd94d8ea1287074f171c3e537691",
                 "2612.coverage_all_positions.summary.temp.txt:md5,2b5c1007a6894ae7031666044c20bda7",
                 "2612.coverage_all_positions.temp.txt:md5,3a906aeb56a2507abdc1d0316c4e48c8",
-                "2612.gene_mapping_data.txt:md5,1e1dcf8637177abfc724ad79707d9596",
                 "2612.overall_mapping_stats.txt:md5,04db45086f198f769469578251ce1015",
                 "2612.reference_mapping_stats.txt:md5,5b45fb79a402f25c47a3522d960ded2d",
-                "2612.seqs.temp.txt:md5,f1f9dd4cbf3006033ddf8c0f1e7e2538",
                 "2612.temp.txt:md5,df17dbbbddf4a92706434d71c016ddb4",
-                "minigut.allele_mapping_data.json:md5,f76c73c34e3c0a4b3d4247a9e373e001",
-                "minigut.allele_mapping_data.txt:md5,707612d40a1dd9e3122397c1d36e4fbd",
                 "minigut.artifacts_mapping_stats.txt:md5,a0426243c26dcfd24b5cfb76a1baffd1",
                 "minigut.coverage.temp.txt:md5,8fa9ceb6c1f02bdcd89472c2523a775a",
                 "minigut.coverage_all_positions.summary.temp.txt:md5,9d93d7e96faf94c18f637a02ef1cebf2",
                 "minigut.coverage_all_positions.temp.txt:md5,fd6083d850435153d3678aa5c387fdc2",
-                "minigut.gene_mapping_data.txt:md5,0baab7c9ebda253dbbc97d91f7497cd3",
                 "minigut.overall_mapping_stats.txt:md5,ded8258300027ec31cad6e8a06bf4196",
                 "minigut.reference_mapping_stats.txt:md5,986084fa8f72769b0e8a8827ce84f138",
-                "minigut.seqs.temp.txt:md5,6b67e9ef5c45216c1223db5ae713dc99",
                 "minigut.temp.txt:md5,e8510289eeb0be3d0e25faaef0c43116"
             ]
         ],
-        "timestamp": "2026-07-06T16:41:16.956705",
+        "timestamp": "2026-07-07T18:19:47.414709",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.4"
         }
     },
     "run multisampleinputs - grouped databases (humann_v3)": {
