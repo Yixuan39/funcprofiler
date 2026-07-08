@@ -62,7 +62,7 @@
                     },
                     "rgi/bwt": {
                         "branch": "master",
-                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "git_sha": "587ef528a2f42a2415ad1b5f760ea93ab1983603",
                         "installed_by": ["modules"]
                     },
                     "rgi/cardannotation": {
