@@ -9,10 +9,35 @@
                 "acrB\t3000216\tprotein homolog model\tCARD\t1\t100.0\tno data\tno data\tEscherichia coli\t133.00\t0.00\t133.00\t100.00\t3150.00\t191.36\t0\t0\t0\t0\tN/A\tN/A\t\t3150\tresistance-nodulation-cell division (RND) antibiotic efflux pump\tfluoroquinolone antibiotic; cephalosporin; glycylcycline; penicillin beta-lactam; tetracycline antibiotic; rifamycin antibiotic; phenicol antibiotic; disinfecting agents and antiseptics\tantibiotic efflux",
                 "kdpE\t3003841\tprotein homolog model\tCARD\t1\t100.0\tno data\tno data\tEscherichia coli\t45.00\t0.00\t45.00\t100.00\t678.00\t175.80\t0\t0\t0\t0\tN/A\tN/A\t\t678\tkdpDE\taminoglycoside antibiotic\tantibiotic efflux",
                 "leuO\t3003843\tprotein homolog model\tCARD\t1\t100.0\tno data\tno data\tEscherichia coli\t55.00\t0.00\t55.00\t100.00\t945.00\t173.55\t0\t0\t0\t0\tN/A\tN/A\t\t945\tmajor facilitator superfamily (MFS) antibiotic efflux pump\tnucleoside antibiotic; disinfecting agents and antiseptics\tantibiotic efflux",
-                "tet(Q)\t3000191\tprotein homolog model\tCARD\t1\t100.0\tno data\tno data\tBacteroides fragilis\t138.00\t0.00\t138.00\t100.00\t1974.00\t179.62\t0\t0\t0\t0\tN/A\tN/A\t\t1974\ttetracycline-resistant ribosomal protection protein\ttetracycline antibiotic\tantibiotic target protection"
+                "tet(Q)\t3000191\tprotein homolog model\tCARD\t1\t100.0\tno data\tno data\tBacteroides fragilis\t138.00\t0.00\t138.00\t100.00\t1974.00\t179.62\t0\t0\t0\t0\tN/A\tN/A\t\t1974\ttetracycline-resistant ribosomal protection protein\ttetracycline antibiotic\tantibiotic target protection",
+                [
+                    "DATAPREP:CAT_FASTQ",
+                    "cat",
+                    "9.5"
+                ],
+                [
+                    "DBPREP:UNTAR",
+                    "untar",
+                    "1.34"
+                ],
+                [
+                    "PROFILING:RGI_BWT",
+                    "kma",
+                    "KMA-1.5.1"
+                ],
+                [
+                    "PROFILING:RGI_BWT",
+                    "rgi",
+                    "6.0.5"
+                ],
+                [
+                    "PROFILING:RGI_BWT",
+                    "rgi-database",
+                    "4.0.1"
+                ]
             ]
         ],
-        "timestamp": "2026-07-07T19:27:27.20526",
+        "timestamp": "2026-07-08T13:52:19.861654",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"

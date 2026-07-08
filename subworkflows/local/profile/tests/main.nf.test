@@ -1,5 +1,6 @@
 nextflow_workflow {
 
+    topics 'versions'
     name "Test profile "
     script "../main.nf"
     workflow "PROFILING"
@@ -189,7 +190,8 @@ nextflow_workflow {
 
             def sortedLines = mappingFile.readLines().sort()
 
-            assert snapshot(sortedLines).match()
+            assert snapshot(sortedLines + topics.versions).match()
+
         }
     }
 }
