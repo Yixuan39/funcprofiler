@@ -3,6 +3,7 @@ nextflow_process {
     name "Test Process RGI_BWT"
     script "../main.nf"
     process "RGI_BWT"
+    topics "versions"
     tag "modules"
     tag "modules_nfcore"
     tag "rgi"
