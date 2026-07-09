@@ -15,3 +15,4 @@ tmp/
 .data/
 *.code-workspace
 .lineage/
+conf/tmp.config
