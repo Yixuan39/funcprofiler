@@ -10,6 +10,8 @@ include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pi
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_funcprofiler_pipeline'
 
 
+
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -34,11 +36,10 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_func
 // MODULE: Installed directly from nf-core/modules
 //
 include { UNTAR                         } from '../modules/nf-core/untar/main'
-include { CAT_FASTQ as MERGE_RUNS       } from '../modules/nf-core/cat/fastq/main'
-include { CONCAT_ALL                    } from '../subworkflows/local/concatall'
 include { PROFILING                     } from '../subworkflows/local/profile/main'
 include { DATAPREP                      } from '../subworkflows/local/dataprep/main'
 include { DBPREP                        } from '../subworkflows/local/dbprep/main'
+
 
 
 
@@ -90,24 +91,23 @@ workflow FUNCPROFILER {
         : file("${projectDir}/assets/methods_description_template.yml", checkIfExists: true)
     def ch_methods_description = channel.value(methodsDescriptionText(ch_multiqc_custom_methods_description))
     ch_multiqc_files = ch_multiqc_files.mix(ch_methods_description.collectFile(name: 'methods_description_mqc.yaml', sort: true))
-    // MULTIQC(
-    //     ch_multiqc_files.flatten().collect().map { files ->
-    //         [
-    //             [id: 'funcprofiler'],
-    //             files,
-    //             multiqc_config
-    //                 ? file(multiqc_config, checkIfExists: true)
-    //                 : file("${projectDir}/assets/multiqc_config.yml", checkIfExists: true),
-    //             multiqc_logo ? file(multiqc_logo, checkIfExists: true) : [],
-    //             [],
-    //             [],
-    //         ]
-    //     }
-    // )
+    MULTIQC(
+        ch_multiqc_files.flatten().collect().map { files ->
+            [
+                [id: 'funcprofiler'],
+                files,
+                multiqc_config
+                    ? file(multiqc_config, checkIfExists: true)
+                    : file("${projectDir}/assets/multiqc_config.yml", checkIfExists: true),
+                multiqc_logo ? file(multiqc_logo, checkIfExists: true) : [],
+                [],
+                [],
+            ]
+        }
+    )
 
     emit:
-//    multiqc_report = MULTIQC.out.report.map { _meta, report -> [report] }.toList() // channel: /path/to/multiqc_report.html
-    multiqc_report = channel.of("a")
+    multiqc_report = MULTIQC.out.report.map { _meta, report -> [report] }.toList() // channel: /path/to/multiqc_report.html
     versions       = ch_versions                 // channel: [ path(versions.yml) ]
 }
 

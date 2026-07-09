@@ -1,6 +1,4 @@
 include { UNTAR } from '../../../modules/nf-core/untar/main'
-include { CAT_FASTQ as MERGE_RUNS } from '../../../modules/nf-core/cat/fastq/main'
-include { CAT_FASTQ } from '../../../modules/nf-core/cat/fastq/main'
 
 workflow DBPREP {
     take:
