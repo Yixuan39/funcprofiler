@@ -15,19 +15,19 @@ components:
 
 ## TODO nf-core: List all of the channels used as input with a description and their structure
 input:
- - reads:
+  - reads:
       type: file
       description: |
         The input channel containing paired fastq files
         Structure: [ val(meta), path(fastq) ]
       pattern: "*.{.fastq}*"
- - reads_concat:
+  - reads_concat:
       type: file
       description: |
         The input channel containing concatenated fastq pairs as a single fastq
         Structure: [ val(meta), path(fastq) ]
       pattern: "*.{.fastq}*"
- - databases:
+  - databases:
       type: file
       description: |
         The input channel containing the database files

@@ -21,7 +21,6 @@
 
 ## Introduction
 
-
 **nf-core/funcprofiler** is a bioinformatics pipeline for read-based functional profiling of microbiome sequencing data. It accepts short-read (Illumina) and long-read (Oxford Nanopore) FASTQ files and runs one or more functional profilers against user-supplied databases, producing gene family abundances, pathway abundances, pathway coverages, and antimicrobial resistance profiles.
 
 ### Pipeline Summary
@@ -101,7 +100,6 @@ We thank the following people for their extensive assistance in the development 
 - Matthias Hörtenhuber
 - James Fellows Yates
 
-
 ## Contributions and Support
 
 If you would like to contribute to this pipeline, please see the [contributing guidelines](docs/CONTRIBUTING.md).
@@ -111,7 +109,6 @@ For further information or help, don't hesitate to get in touch on the [Slack `#
 ## Citations
 
 <!-- If you use nf-core/funcprofiler for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
-
 
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
