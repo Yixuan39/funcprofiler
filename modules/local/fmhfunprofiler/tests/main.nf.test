@@ -9,25 +9,10 @@ nextflow_process {
     tag "fmhfunprofiler"
 
     test("fmhfunprofiler - fastq") {
-	setup {
-
-	    run("CONCAT_ALL") {
-		script "../../../../subworkflows/local/concatall.nf"
-		process {
-                    """
-                    input[0]= Channel.of([
-                    [ id:'test', single_end:false, run_accession:"abc", "db_name":"demo" ], // meta map
-			[ file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true),
-                        file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true) ]])
-                    """
-		}
-            }
-
-	}
         when {
             process {
                 """
-                input[0]= CONCAT_ALL.out[0]
+                input[0]= [[id: "test_minigut_R1"], file(params.modules_testdata_base_path + '../../mag/test_data/test_minigut_R1.fastq.gz', checkIfExists: true)]
                 input[1] = Channel.of([[db_params:"11 1000"],file(params.pipelines_testdata_base_path + 'funcprofiler/data/database/fmhfunprofiler/KOs_sketched_scaled_1000_demo.sig.zip')])
 
                 """
