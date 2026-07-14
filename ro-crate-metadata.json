@@ -44,6 +44,9 @@
                     "@id": "modules/"
                 },
                 {
+                    "@id": "modules/local/"
+                },
+                {
                     "@id": "modules/nf-core/"
                 },
                 {
@@ -99,7 +102,7 @@
             },
             "mentions": [
                 {
-                    "@id": "#322dad57-f56e-4262-8284-302faf41fa1d"
+                    "@id": "#948b5203-3dd8-470e-a4e2-2923b5f6f05c"
                 }
             ],
             "name": "nf-core/funcprofiler"
@@ -128,11 +131,11 @@
             ],
             "contributor": [
                 {
-                    "@id": "#c6f629b9-26a9-487e-bd5f-f9ca5b819419"
+                    "@id": "#e53fb8e6-9376-43bb-8de5-1ded6afa699b"
                 }
             ],
             "dateCreated": "",
-            "dateModified": "2026-04-30T13:32:35Z",
+            "dateModified": "2026-07-14T12:47:12Z",
             "dct:conformsTo": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/",
             "keywords": [
                 "nf-core",
@@ -171,11 +174,11 @@
             "version": "!>=25.10.4"
         },
         {
-            "@id": "#322dad57-f56e-4262-8284-302faf41fa1d",
+            "@id": "#948b5203-3dd8-470e-a4e2-2923b5f6f05c",
             "@type": "TestSuite",
             "instance": [
                 {
-                    "@id": "#42032b30-363e-40c3-9805-13ea4dc9ae5d"
+                    "@id": "#0da88ece-0232-4d75-9c6d-8269094d410a"
                 }
             ],
             "mainEntity": {
@@ -184,7 +187,7 @@
             "name": "Test suite for nf-core/funcprofiler"
         },
         {
-            "@id": "#42032b30-363e-40c3-9805-13ea4dc9ae5d",
+            "@id": "#0da88ece-0232-4d75-9c6d-8269094d410a",
             "@type": "TestInstance",
             "name": "GitHub Actions workflow for testing nf-core/funcprofiler",
             "resource": "repos/nf-core/funcprofiler/actions/workflows/nf-test.yml",
@@ -225,6 +228,11 @@
             "@id": "modules/",
             "@type": "Dataset",
             "description": "Modules used by the pipeline"
+        },
+        {
+            "@id": "modules/local/",
+            "@type": "Dataset",
+            "description": "Pipeline-specific modules"
         },
         {
             "@id": "modules/nf-core/",
@@ -313,7 +321,7 @@
             "url": "https://nf-co.re/"
         },
         {
-            "@id": "#c6f629b9-26a9-487e-bd5f-f9ca5b819419",
+            "@id": "#e53fb8e6-9376-43bb-8de5-1ded6afa699b",
             "@type": "Person",
             "email": "nickp60@users.noreply.github.com",
             "name": "Nick Waters"
