@@ -1,6 +1,4 @@
 include { UNTAR } from '../../../modules/nf-core/untar/main'
-include { CAT_FASTQ as MERGE_RUNS } from '../../../modules/nf-core/cat/fastq/main'
-include { CAT_FASTQ } from '../../../modules/nf-core/cat/fastq/main'
 
 workflow DBPREP {
     take:
@@ -10,7 +8,7 @@ workflow DBPREP {
 
     // Validate and decompress databases
     ch_dbs_for_untar = databases.branch { db_meta, db_path ->
-        untar: db_path.name.endsWith(".tar.gz")
+        untar: db_path.name.endsWith(".tar.gz") | db_path.name.endsWith(".tar.bz2") | db_path.name.endsWith(".tar") | db_path.name.endsWith(".tar.xz")
         skip: true
     }
     // Filter the channel to untar only those databases for tools that are selected to be run by the user.

@@ -2,17 +2,17 @@
 // Run profiling
 //
 
-include { MIFASER                                       } from '../../../modules/local/mifaser/main'
-include { HUMANN3                                       } from '../../../modules/local/humann/humann/main'
+include { MIFASER                                       } from '../../../modules/nf-core/mifaser/main'
+include { HUMANN3_HUMANN                                } from '../../../modules/nf-core/humann3/humann/main'
 include { HUMANN4                                       } from '../../../modules/local/humann4/humann/main'
-include { HUMANN3_REGROUP                               } from '../../../modules/local/humann/regroup/main'
+include { HUMANN3_REGROUP                               } from '../../../modules/nf-core/humann3/regroup/main'
 include { HUMANN4_REGROUP                               } from '../../../modules/local/humann4/regroup/main'
 include { FMHFUNPROFILER                                } from '../../../modules/local/fmhfunprofiler/main'
 include { METAPHLAN_METAPHLAN as MPAHUMANN3;
           METAPHLAN_METAPHLAN as MPAHUMANN4             } from '../../../modules/nf-core/metaphlan/metaphlan/main'
-include { CONCAT_ALL                                    } from '../../../subworkflows/local/concatall'
 include { DIAMOND_BLASTX                                } from '../../../modules/nf-core/diamond/blastx/main'
 include { RGI_BWT                                       } from '../../../modules/nf-core/rgi/bwt/main'
+include { RGI_CARDANNOTATION                            } from '../../../modules/nf-core/rgi/cardannotation/main'
 include { EGGNOGMAPPER                                  } from '../../../modules/nf-core/eggnogmapper/main'
 include { SEQKIT_FQ2FA                                  } from '../../../modules/nf-core/seqkit/fq2fa/main'
 include { GUNZIP                                        } from '../../../modules/nf-core/gunzip/main'
@@ -167,7 +167,8 @@ workflow PROFILING {
     // channel element order in sync with each other
 
     // PAIRED-END READ TOOLS
-    rgi_inputs = prepareInputs(reads, databases, 'rgi', false)
+    ch_input_for_rgi = prepareInputs(reads, databases, 'rgi', false)
+    ch_input_for_eggnogmapper = prepareInputs(reads_concat, databases, 'eggnogmapper', true)
 
     // CONCAT READ TOOLS
     ch_input_for_fmhfunprofiler = prepareInputs(reads_concat, databases, 'fmhfunprofiler', true)
@@ -198,18 +199,18 @@ workflow PROFILING {
        // JOIN the original reads with the profile output
         ch_humann3_input = ch_input_for_humann_v3.reads
             .join(MPAHUMANN3.out.profile, by: 0)  // Join on meta map
-        HUMANN3(
-            ch_humann3_input.map { meta, reads, profile -> [meta, reads] },  // Extract reads
-            ch_humann3_input.map { meta, reads, profile -> [meta, profile] }, // Extract profile
+        HUMANN3_HUMANN(
+            ch_humann3_input.map { it -> [it[0], it[1]] },  // Extract reads
+            ch_humann3_input.map { it -> [it[0], it[2]] }, // Extract profile
             getDbPath(ch_input_for_humann_v3.db, 'humann_nucleotide'),
             getDbPath(ch_input_for_humann_v3.db, 'humann_protein'),
             getDbPath(ch_input_for_humann_v3.db, 'humann_utility'),
         )
-	HUMANN3_REGROUP(HUMANN3.out.genefamilies, "uniref90_level4ec", getDbPath(ch_input_for_humann_v3.db, 'humann_utility'))
+	HUMANN3_REGROUP(HUMANN3_HUMANN.out.genefamilies, "uniref90_level4ec", getDbPath(ch_input_for_humann_v3.db, 'humann_utility'))
         ch_raw_profiles    = ch_raw_profiles.mix( MPAHUMANN3.out.profile )
-        ch_raw_profiles        = ch_raw_profiles.mix( HUMANN3.out.pathabundance )
-	    .mix( HUMANN3.out.genefamilies )
-	    .mix( HUMANN3.out.pathcoverage )
+        ch_raw_profiles        = ch_raw_profiles.mix( HUMANN3_HUMANN.out.pathabundance )
+	    .mix( HUMANN3_HUMANN.out.genefamilies )
+	    .mix( HUMANN3_HUMANN.out.pathcoverage )
     }
     if ( params.run_humann_v4 ) {
         MPAHUMANN4 (
@@ -220,8 +221,8 @@ workflow PROFILING {
             .join(MPAHUMANN4.out.profile, by: 0)  // Join on meta map
 
         HUMANN4(
-            ch_humann4_input.map { meta, reads, profile -> [meta, reads] },  // Extract reads
-            ch_humann4_input.map { meta, reads, profile -> [meta, profile] }, // Extract profile
+            ch_humann4_input.map { it -> [it[0], it[1]] },  // Extract reads
+            ch_humann4_input.map { it -> [it[0], it[2]] }, // Extract profile
             getDbPath(ch_input_for_humann_v4.db, 'humann_nucleotide'),
             getDbPath(ch_input_for_humann_v4.db, 'humann_protein'),
             getDbPath(ch_input_for_humann_v4.db, 'humann_utility'),
@@ -238,7 +239,8 @@ workflow PROFILING {
     }
 
     if ( params.run_rgi ) {
-        RGI_BWT( ch_input_for_rgi.reads, getDbPath(ch_input_for_rgi.db, "main"), [] )
+        RGI_CARDANNOTATION(getDbPath(ch_input_for_rgi.db, "main"))
+        RGI_BWT( ch_input_for_rgi.reads, RGI_CARDANNOTATION.out.db, [] )
         ch_raw_profiles = ch_raw_profiles.mix( RGI_BWT.out.tsv )
     }
     if ( params.run_eggnogmapper ) {
